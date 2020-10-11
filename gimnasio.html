@@ -1,0 +1,145 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>gimnasio.sikuli</h2> <a href="gimnasio.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="cmt">#!/usr/bin/python</span>
+<span class="cmt"># -*- coding: UTF-8 -*-  </span>
+
+<span class="kw">import</span> webbrowser
+
+user      = <span class="str">u"xavirambla@yahoo.es"</span>
+password  = <span class="str">u"xxxxxxxxx"</span>
+webpage   = <span class="str">u"https://xxxxxxxxxxxxxxxxxxxxxx.deporsite.net/"</span>
+
+
+webbrowser.open(webpage)
+<span class="kw">if</span> <span class="skw">find</span>(<img src="1600768307858.png" />):
+
+    <span class="skw">click</span>(<img src="1600768307858.png" />)
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+
+    paste(user)
+    <span class="skw">type</span>(Key.TAB)
+    <span class="skw">type</span>(password)
+    <span class="skw">type</span>(Key.ENTER)
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+
+
+<span class="skw">click</span>(Pattern(<img src="1600768468841.png" />).targetOffset(-<span class="dig">10</span>,<span class="dig">143</span>))
+
+<span class="skw">wait</span>(<img src="1600768510568.png" />,<span class="dig">10</span>)
+<span class="skw">click</span>(Pattern(<img src="1600839028685.png" />).exact())
+
+
+<span class="cmt">#el contenido del mediodía está más abajo.</span>
+i=<span class="dig">0</span>
+<span class="kw">while</span>(i&lt;<span class="dig">12</span>):
+    <span class="skw">type</span>(Key.DOWN)
+    i+=<span class="dig">1</span>
+
+<span class="skw">wait</span>(<span class="dig">4</span>)
+horarios=[Pattern(<img src="1601026745209.png" />).similar(<span class="dig">0.98</span>),Pattern(<img src="1601026772929.png" />).similar(<span class="dig">0.92</span>),Pattern(<img src="1601026822979.png" />).similar(<span class="dig">0.94</span>),Pattern(<img src="1601026699707.png" />).similar(<span class="dig">0.95</span>),Pattern(<img src="1601026589557.png" />).similar(<span class="dig">0.94</span>),Pattern(<img src="1601026852330.png" />).exact()]
+idx_horarios=<span class="dig">0</span>
+lista = findAll(horarios[idx_horarios])
+
+idx=<span class="dig">0</span>
+fin = False
+<span class="kw">while</span> ( <span class="kw">not</span> fin):
+    <span class="kw">try</span>:
+        <span class="skw">click</span>(lista[idx])
+        idx=idx+<span class="dig">1</span>
+    <span class="kw">except</span>:
+        <span class="cmt">#fallo interno al buscar la imágen, </span>
+        idx=idx+<span class="dig">1</span>
+
+
+    <span class="cmt"># Si con 5elem</span>
+    <span class="kw">if</span> (idx==<span class="dig">5</span>):
+        idx_horarios+=<span class="dig">1</span>
+        lista = findAll(horarios[idx_horarios])
+        <span class="kw">print</span>(<span class="str">"numtimes"</span>)
+        <span class="kw">print</span>(lista)
+        idx=<span class="dig">0</span>
+
+    <span class="cmt">#comprobamos si hay reserva</span>
+    fin =   exists(Pattern(<img src="1600768637974.png" />).similar(<span class="dig">0.82</span>))
+
+
+
+<span class="skw">click</span>(Pattern(<img src="1600768637974.png" />).similar(<span class="dig">0.82</span>))
+<span class="skw">wait</span>(<span class="dig">4</span>)
+<span class="skw">click</span>(<img src="1600768776861.png" />)
+
+
+exit(<span class="dig">0</span>)
+</pre>
+</body>
+</html>
